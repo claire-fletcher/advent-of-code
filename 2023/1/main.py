@@ -14,11 +14,6 @@ words_to_numbers = {
     'zero': '0'
 }
 
-def read_file(file_name):
-    with open(file_name, 'r') as file:
-        lines = file.readlines()
-    return lines
-
 def read_file_into_matrix(file_name):
     matrix = []
     with open(file_name, 'r') as file:
@@ -27,6 +22,14 @@ def read_file_into_matrix(file_name):
             matrix.append(row)
     return matrix
 
+## Find Digit - Part A
+def find_digit(line):
+    for char in line:
+        if char.isdigit():
+            return char
+    return None
+
+## Find Digit - Part B
 def find_first_digit(line):
 
     grepped_string = ""
@@ -45,9 +48,6 @@ def find_first_digit(line):
     return None
 
 def find_last_digit(line):
-
-    line.reverse()
-
     grepped_string = ""
 
     for char in line:
@@ -74,17 +74,17 @@ def calculate_summed_calibration_value(calibration_values):
 
 def main():
     print("Reading input file...")
-    matrix = read_file_into_matrix("test-input.txt")
+    matrix = read_file_into_matrix("input.txt")
 
-    print("Printing first and last digits...")
-    calibration_values = []
+    print("Calulating first and last digits...")
+    calibration_values_a, calibration_values_b = [], []
     for line in matrix:
-        calibration_values.append(decode_calibration_value(find_first_digit(line), find_last_digit(line)))
+        backwards = list(reversed(line))
+        calibration_values_a.append(decode_calibration_value(find_digit(line), find_digit(backwards)))
+        calibration_values_b.append(decode_calibration_value(find_first_digit(line), find_last_digit(backwards)))
 
-    print("Final Result: ", calculate_summed_calibration_value(calibration_values))
-
-
-
+    print("Final Result Part A: ", calculate_summed_calibration_value(calibration_values_a))
+    print("Final Result Part B: ", calculate_summed_calibration_value(calibration_values_b))
 
 if __name__ == "__main__":
     main()

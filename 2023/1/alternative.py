@@ -44,7 +44,7 @@ def find_digit(line):
     return None
 
 ## Find Digit - Part B
-def find_digit_words(line, reversed):
+def find_digit_words(line):
     concat = ""
 
     for char in line:
@@ -85,8 +85,8 @@ def main():
             find_digit(backwards)))
 
         calibration_values_b.append(
-            decode_calibration_value(find_digit_words(line, False),
-            find_digit_words(backwards, True)))
+            decode_calibration_value(find_digit_words(line),
+            find_digit_words(backwards)))
 
     print("Final Result Part A: ",
         calculate_summed_calibration_value(calibration_values_a))

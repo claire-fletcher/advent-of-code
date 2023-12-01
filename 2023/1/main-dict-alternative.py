@@ -12,6 +12,16 @@ words_to_numbers = {
     'eight': '8',
     'nine': '9',
     'zero': '0',
+    'eno': '1',
+    'owt': '2',
+    'eerht': '3',
+    'ruof': '4',
+    'evif': '5',
+    'xis': '6',
+    'neves': '7',
+    'thgie': '8',
+    'enin': '9',
+    'orez': '0'
 }
 
 def read_file_into_matrix(file_name):
@@ -34,16 +44,6 @@ def find_digit(line):
     return None
 
 ## Find Digit - Part B
-def match_num_pattern(concat):
-    pattern = r'(?=(zero|one|two|three|four|five|six|seven|eight|nine)\b)\w+'
-
-    return re.findall(pattern, concat, flags=re.IGNORECASE)
-
-def match_num_pattern_reversed(concat):
-    pattern = r'(?=(orez|eno|owt|eerht|ruof|evif|xis|neves|thgie|enin)\b)\w+'
-
-    return re.findall(pattern, concat, flags=re.IGNORECASE)
-
 def find_digit_words(line, reversed):
     concat = ""
 
@@ -53,21 +53,12 @@ def find_digit_words(line, reversed):
             return char
 
         else:
-            # Concatenate the string until a number matches the regex
+            # Concatenate the string until a number matches the dictionary
+            # Make sure to consider that it may not be an exact match if it isn't the start or end
             concat += char
-            # Use the correct pattern matching
-            if reversed:
-                number = match_num_pattern_reversed(concat)
-                # If we have found a number then stop looking!
-                if number.__len__() == 1:
-                    print(line, concat, words_to_numbers[number[0][::-1]])
-                    return words_to_numbers[number[0][::-1]]
-            else:
-                number = match_num_pattern(concat)
-                # If we have found a number then stop looking!
-                if number.__len__() == 1:
-                    print(line, concat, words_to_numbers[number[0]])
-                    return words_to_numbers[number[0]]
+            for key in words_to_numbers:
+                if key in concat:
+                    return words_to_numbers[key]
 
     return None
 
@@ -88,7 +79,6 @@ def main():
     print("Calulating first and last digits...")
     calibration_values_a, calibration_values_b = [], []
     for line in matrix:
-        print("new!")
         backwards = list(reversed(line))
 
         calibration_values_a.append(

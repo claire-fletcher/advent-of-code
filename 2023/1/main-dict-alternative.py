@@ -56,9 +56,8 @@ def find_digit_words(line, reversed):
             # Concatenate the string until a number matches the dictionary
             # Make sure to consider that it may not be an exact match if it isn't the start or end
             concat += char
-            for key in words_to_numbers:
-                if key in concat:
-                    return words_to_numbers[key]
+            if any(k in concat for k in words_to_numbers):
+                return [k for key, k in words_to_numbers.items() if key in concat][0] # List comprehension
 
     return None
 

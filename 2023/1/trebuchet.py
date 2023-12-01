@@ -1,7 +1,5 @@
 # Trebuchet. Oh no our calibration is wrong!
 
-# 1. take a string input and find and print all numbers on each line
-
 def read_file_into_matrix(file_name):
     """
     Reads a file and converts its contents into a matrix.

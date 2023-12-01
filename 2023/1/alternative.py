@@ -32,17 +32,14 @@ def read_file_into_matrix(file_name):
         for line in file:
             row = list(line.strip())
             matrix.append(row)
-
     return matrix
 
 
 ## Find Digit - Part A
 def find_digit(line):
     for char in line:
-
         if char.isdigit():
             return char
-
     return None
 
 

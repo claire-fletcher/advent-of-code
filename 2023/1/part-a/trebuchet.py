@@ -74,9 +74,6 @@ def calculate_summed_calibration_value(calibration_values):
     return sum
 
 def main():
-    # Your main code goes here
-    print("Hello, World!")
-
     print("Reading input file...")
     matrix = read_file_into_matrix("input.txt")
 

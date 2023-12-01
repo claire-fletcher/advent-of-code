@@ -10,4 +10,4 @@ def find_all_digits(line):
     Returns:
         generator: A generator that yields the digits found in the line.
     """
-    return filter(str.isdigit, line) # TODO: consider alternative where we just filter each string line!!
+    return filter(str.isdigit, line)

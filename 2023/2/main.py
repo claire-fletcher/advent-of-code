@@ -25,6 +25,7 @@ def split_into_sections(line, replace_dict):
     # split the new string into a list separated by important sections
     return list(re.split(r"[:,;]", line))[1:]  # Drop the game ID
 
+
 def determine_success(line):
     game = split_into_sections(line, colour_totals)
 
@@ -37,6 +38,7 @@ def determine_success(line):
             continue
 
     return True
+
 
 def determine_minimum(line):
     colour_mins = [0, 0, 0]

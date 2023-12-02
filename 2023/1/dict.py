@@ -36,11 +36,7 @@ def read_file_into_matrix(file_name):
 
 ## Find Digit - Part A
 def find_digit(line):
-    for char in line:
-        if char.isdigit():
-            return char
-    return None
-
+    return [char for char in line if char.isdigit()][0]
 
 ## Find Digit - Part B
 def find_digit_words(line):

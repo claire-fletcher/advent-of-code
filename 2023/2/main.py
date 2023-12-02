@@ -1,16 +1,12 @@
 import re
 
-red_total = 12
-green_total = 13
-blue_total = 14
-
-translate_colours = {
+colour_totals = {
     "red": "12",
     "green": "13",
     "blue": "14",
 }
 
-colour_enum = {
+colour_indexes = {
     "red": "0",
     "green": "1",
     "blue": "2",
@@ -21,14 +17,16 @@ def read_file_into_lines(file_name):
     return [line.strip() for line in open(file_name, "r")]
 
 
-def determine_success(line):
-
+def split_into_sections(line, replace_dict):
     # replace colours with numbers
-    for colour, total in translate_colours.items():
-        line = line.replace(colour, total)
+    for colour, val in replace_dict.items():
+        line = line.replace(colour, val)
 
     # split the new string into a list separated by important sections
-    game = list(re.split(r"[:,;]", line))[1:]  # Drop the game ID
+    return list(re.split(r"[:,;]", line))[1:]  # Drop the game ID
+
+def determine_success(line):
+    game = split_into_sections(line, colour_totals)
 
     # For each section, if a > b then fail
     for section in game:
@@ -40,25 +38,15 @@ def determine_success(line):
 
     return True
 
-
 def determine_minimum(line):
-
     colour_mins = [0, 0, 0]
-
-    # replace colours with numbers
-    for colour, index in colour_enum.items():
-        line = line.replace(colour, index)
-
-    # split the new string into a list separated by important sections
-    game = list(re.split(r"[:,;]", line))[1:]  # Drop the game ID
+    game = split_into_sections(line, colour_indexes)
 
     # For each section, if a > b then fail
     for section in game:
         number = re.findall(r"\d+", section)
         if int(number[0]) > colour_mins[int(number[1])]:
             colour_mins[int(number[1])] = int(number[0])
-
-    print(colour_mins)
 
     return colour_mins
 

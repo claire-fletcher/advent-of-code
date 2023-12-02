@@ -77,9 +77,7 @@ def calculate_summed_calibration_value(calibration_values):
 
 def main():
     print("Reading input file...")
-    matrix = read_file_into_matrix(
-        "/home/claire/claire-fletcher/advent-of-code/2023/1/input.txt"
-    )
+    matrix = read_file_into_matrix("input.txt")
 
     print("Calulating first and last digits...")
     calibration_values_a, calibration_values_b = [], []

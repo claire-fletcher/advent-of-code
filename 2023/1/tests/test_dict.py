@@ -1,5 +1,5 @@
 # Using PyTest
-from alternative import *
+from dict import *
 
 
 def test_part1():

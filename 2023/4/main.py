@@ -1,6 +1,5 @@
 ## Attempting this one in a small condensed script now that the main and function
 ## Layout has been practiced
-import re
 
 # Read in the input
 # Drop the Card name
@@ -15,8 +14,10 @@ num_cards = [1] * len(cards)
 for i, card in enumerate(cards):
     # Split into two integer arrays, winning and scratch.
     winning_numbers, scratch_numbers = card.split("|")
-    winning_numbers = list(map(int, winning_numbers.split())) # Method 1 for digits (assumes only digits)
-    scratch_numbers = list(map(int, re.findall(r"\d+", scratch_numbers))) # Method 2 for digits
+    # Assume all numbers separated by spaces and nothing that isn't a digit
+    winning_numbers = list(map(int, winning_numbers.split()))
+    scratch_numbers = list(map(int, scratch_numbers.split()))
+    # # Method 2 for digits: list(map(int, re.findall(r"\d+", scratch_numbers)))
 
     ## Note:
     # Alternative iterator method instead of for loop list comprehension:

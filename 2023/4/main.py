@@ -21,7 +21,7 @@ for i, card in enumerate(cards):
     ## Note:
     # Alternative iterator method instead of for loop list comprehension:
     # winning_numbers = list(map(int, winning_numbers.split()))
-    # Map in python is not a data structure, it is the function to map to
+    # Map in python is not a data structure, it is a way to iteratively apply a function.
     # Here we do the equivalent of for each string in the list returned by split.()
     # then convert to int and put them in a list.
 

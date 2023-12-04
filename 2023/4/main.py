@@ -15,8 +15,8 @@ num_cards = [1] * len(cards)
 for i, card in enumerate(cards):
     # Split into two integer arrays, winning and scratch.
     winning_numbers, scratch_numbers = card.split("|")
-    winning_numbers = list(map(int, winning_numbers.split()))
-    scratch_numbers = list(map(int, re.findall(r"\d+", scratch_numbers)))
+    winning_numbers = list(map(int, winning_numbers.split())) # Method 1 for digits (assumes only digits)
+    scratch_numbers = list(map(int, re.findall(r"\d+", scratch_numbers))) # Method 2 for digits
 
     ## Note:
     # Alternative iterator method instead of for loop list comprehension:

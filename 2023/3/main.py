@@ -31,6 +31,9 @@ def sum_part_numbers_col(matrix):
 
     # pass in matrix
 
+    # Look at x,y as the number. We need to check for all x+1-1, y+1-1 combinations
+    # If there is a symbol in any of those then we need to number!
+
     return matrix
 
 

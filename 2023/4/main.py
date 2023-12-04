@@ -3,7 +3,7 @@
 
 # Read in the input
 # Drop the Card name
-cards = [line.strip().split(": ")[1] for line in open("input.txt", "r").readlines()]
+cards = [line.strip().split(": ")[1] for line in open("input.txt", "r")]
 
 # Total Part A points overall
 part_a_points = 0
@@ -29,15 +29,16 @@ for i, card in enumerate(cards):
     # Find repeats
     points_set = set(scratch_numbers).intersection(winning_numbers)
 
+    num_winners = len(points_set)
+
     # If there is a win
     if points_set != set():
-        part_a_points += 2 ** (len(points_set)-1)
+        part_a_points += 2 ** (num_winners - 1)
 
         # Part B if there is a win
-        for _ in range(num_cards[i]):
+        for index in range(1, num_winners + 1):
             # Add to copies of cards
-            for index in range(1, len(points_set)+1):
-                num_cards[i+index] += 1 # Add a copy to the correct card
+            num_cards[i+index] += num_cards[i]
 
 print("Part A: ", part_a_points)
 print("Part B: ", sum(num_cards))

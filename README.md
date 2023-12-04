@@ -10,10 +10,9 @@ Advent of Code Answers [https://adventofcode.com] . Lots of learning of new tech
 
 ## 2023 Goals
 
+- Learn Python!
 - Recap data structures and algorithms
-- Put into practice some Python scripting
-- Recap golang
 - Python best practices
-- Python tests using the examples to test the logic works before running it with the input file!
+- Python tests using the examples to test the logic works before running it with the input file
 - Practice using an AI helper (Codeium) to answer python best practices etc!
-- Practice my regex
+- Practice regex

@@ -15,8 +15,15 @@ num_cards = [1] * len(cards)
 for i, card in enumerate(cards):
     # Split into two integer arrays, winning and scratch.
     winning_numbers, scratch_numbers = card.split("|")
-    winning_numbers = [int(n) for n in re.findall(r"\d+", winning_numbers)]
-    scratch_numbers = [int(n) for n in re.findall(r"\d+", scratch_numbers)]
+    winning_numbers = list(map(int, winning_numbers.split()))
+    scratch_numbers = list(map(int, re.findall(r"\d+", scratch_numbers)))
+
+    ## Note:
+    # Alternative iterator method instead of for loop list comprehension:
+    # winning_numbers = list(map(int, winning_numbers.split()))
+    # Map in python is not a data structure, it is the function to map to
+    # Here we do the equivalent of for each string in the list returned by split.()
+    # then convert to int and put them in a list.
 
     # Find repeats
     points_set = set(scratch_numbers).intersection(winning_numbers)

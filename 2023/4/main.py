@@ -1,10 +1,10 @@
 ## Attempting this one in a small condensed script now that the main and function
 ## Layout has been practiced
-# TODO: fix the list within list issue from read in method
 import re
 
 # Read in the input
-cards = [line.strip().split(": ")[1:] for line in open("input.txt", "r")]
+# Drop the Card name
+cards = [line.strip().split(": ")[1] for line in open("input.txt", "r").readlines()]
 
 # Total Part A points overall
 part_a_points = 0
@@ -13,8 +13,8 @@ part_a_points = 0
 num_cards = [1] * len(cards)
 
 for i, card in enumerate(cards):
-    # Read card in as NUMBERS into two arrays/lists separate the string by |
-    winning_numbers, scratch_numbers = card[0].split("|")
+    # Split into two integer arrays, winning and scratch.
+    winning_numbers, scratch_numbers = card.split("|")
     winning_numbers = [int(n) for n in re.findall(r"\d+", winning_numbers)]
     scratch_numbers = [int(n) for n in re.findall(r"\d+", scratch_numbers)]
 

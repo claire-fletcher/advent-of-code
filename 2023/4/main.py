@@ -28,7 +28,7 @@ for i, card in enumerate(cards):
 
     # Find repeats
     points_set = set(scratch_numbers).intersection(winning_numbers)
-
+    # Alternatively: len(scratch_numbers & winning_numbers)
     num_winners = len(points_set)
 
     # If there is a win

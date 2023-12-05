@@ -1,5 +1,5 @@
 # Read in the input
-input = open("input.txt", "r").read().strip()
+input = open("test-input.txt", "r").read().strip()
 
 # Get seeds and then seed-to-soil map into sensible formats
 sections = input.split('\n\n')
@@ -19,47 +19,39 @@ part_b_nearest_location = 0
 for seed in seeds:
     for translator in map_values:
         for line in translator:
-            ranges = [int(x) for x in line.split()]
-            dest, source, length = ranges[0], ranges[1], ranges[2]
+            dest, source, length = [int(x) for x in line.split()]
 
             # Translate the seed value to the new range value, else leave it
             range_list = range(source, source + length)
             if seed in range_list:
-                index = range_list.index(seed)
-                seed = dest + index
+                seed = dest + range_list.index(seed)
                 break
 
     if part_a_nearest_location == 0:
         part_a_nearest_location = seed
-    elif seed < part_a_nearest_location:
-        part_a_nearest_location = seed
+    else:
+        part_a_nearest_location = min(seed, part_a_nearest_location)
 
 # PART B: This works on the test but the larger numbers in the normal input means it will take ages to solve.
-for seed in seeds_from_ranges:
+for seed_range, seed_range_length in seeds_from_ranges:
 
-    print("running")
-
-    seed_range = seed[0]
-    seed_range_length = seed[1]
     seed_range_list = range(seed_range, seed_range + seed_range_length)
 
     for seed in seed_range_list:
         for translator in map_values:
             for line in translator:
-                ranges = [int(x) for x in line.split()]
-                dest, source, length = ranges[0], ranges[1], ranges[2]
+                dest, source, length = [int(x) for x in line.split()]
 
                 # Translate the seed value to the new range value, else leave it
                 range_list = range(source, source + length)
                 if seed in range_list:
-                    index = range_list.index(seed)
-                    seed = dest + index
+                    seed = dest + range_list.index(seed)
                     break
 
         if part_b_nearest_location == 0:
             part_b_nearest_location = seed
-        elif seed < part_b_nearest_location:
-            part_b_nearest_location = seed
+        else:
+            part_b_nearest_location = min(seed, part_b_nearest_location)
 
 
 print("Part A: ",part_a_nearest_location)

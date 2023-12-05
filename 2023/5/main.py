@@ -20,15 +20,13 @@ for seed in seeds:
     for translator in map_values:
         for line in translator:
             ranges = [int(x) for x in line.split()]
-            dest_range = ranges[0]
-            source_range = ranges[1]
-            range_length = ranges[2]
+            dest, source, length = ranges[0], ranges[1], ranges[2]
 
             # Translate the seed value to the new range value, else leave it
-            range_list = range(source_range, source_range + range_length)
+            range_list = range(source, source + length)
             if seed in range_list:
                 index = range_list.index(seed)
-                seed = dest_range + index
+                seed = dest + index
                 break
 
     if part_a_nearest_location == 0:
@@ -49,15 +47,13 @@ for seed in seeds_from_ranges:
         for translator in map_values:
             for line in translator:
                 ranges = [int(x) for x in line.split()]
-                dest_range = ranges[0]
-                source_range = ranges[1]
-                range_length = ranges[2]
+                dest, source, length = ranges[0], ranges[1], ranges[2]
 
                 # Translate the seed value to the new range value, else leave it
-                range_list = range(source_range, source_range + range_length)
+                range_list = range(source, source + length)
                 if seed in range_list:
                     index = range_list.index(seed)
-                    seed = dest_range + index
+                    seed = dest + index
                     break
 
         if part_b_nearest_location == 0:

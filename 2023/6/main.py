@@ -12,11 +12,8 @@ total_ways_to_win = []
 for time, win in zip(times, wins):
     ways_to_win = 0
 
-    # Speed = Win-distance/Time
+    # Speed (button press time) = Win-distance/Time
     # win-distance = button * (time - button)
-    # w = bt - b**2
-    # b**2 -bt + w = 0
-    # therefore qudratic formula
     win_button_press = math.ceil(win/time)
 
     # Any value B or greater will win

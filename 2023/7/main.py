@@ -76,5 +76,9 @@ def compare_hands(hand_a, hand_b):
 ## or by the strongest card in the hand if the hands have the same strength.
 
 hands.sort(key=cmp_to_key(compare_hands))
-part1 = [(i + 1) * int(v[1]) for i, v in enumerate(hands)]
-print("Part 1: ", sum(part1))
+
+part_a = 0
+for hand, bid in enumerate(hands):
+    # rank * bid added to the total
+    part_a += (hand + 1) * int(bid[1])
+print("Part A: ", part_a)

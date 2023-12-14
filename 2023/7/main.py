@@ -56,6 +56,10 @@ def hand_type(hand):
     # Else all are different
     return 0
 
+# Defining our own sorting function
+# Returned value is used for the comparisons in the sort.
+# Essentially takes in current and next, compares, returns value.
+# This is how we know that
 def compare_hands(hand_a, hand_b):
     # Get the hand from the (hand, bid)
     hand_a, hand_b = hand_a[0], hand_b[0]
@@ -74,7 +78,7 @@ def compare_hands(hand_a, hand_b):
 ## Using the cmp_to_key we can define how to sort each of the hands ourselves.
 ## This will then compare each hand with each other, sorting by the strongest hands
 ## or by the strongest card in the hand if the hands have the same strength.
-
+# Each element is compared with every other element of the list until a sorted list is obtained
 hands.sort(key=cmp_to_key(compare_hands))
 
 part_a = 0

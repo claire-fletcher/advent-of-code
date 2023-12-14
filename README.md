@@ -10,6 +10,8 @@ Advent of Code Answers [https://adventofcode.com] . Lots of learning of new tech
 
 ## 2023 Goals
 
+- Complete more AoC than previous year:)
+
 - Learn Python!
 - Recap data structures and algorithms
 - Python best practices

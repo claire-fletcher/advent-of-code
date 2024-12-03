@@ -8,6 +8,10 @@ Advent of Code Answers [https://adventofcode.com] . Lots of learning of new tech
 >
 > Collect stars by solving puzzles. Two puzzles will be made available on each day in the Advent calendar; the second puzzle is unlocked when you complete the first. Each puzzle grants one star. Good luck!
 
+## 2024 Goals
+- Create a selection of modules in a library to be used each year
+- Continue using python
+
 ## 2023 Goals
 
 - Complete more AoC than previous year:)

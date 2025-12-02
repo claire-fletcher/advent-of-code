@@ -50,16 +50,14 @@ def input_string_reader(input):
     Read in the input string and yield start and end pairs.
     """
     ids = input.split(",")
-    for id in ids:
-        start_end = id.split("-")
-        yield start_end[0], start_end[1]
+    return (id.split("-") for id in ids)
 
 def main():
     input_string = "nope"
     test_string = "11-22,95-115,998-1012,1188511880-1188511890,222220-222224,1698522-1698528,446443-446449,38593856-38593862,565653-565659,824824821-824824827,2121212118-2121212124"
     total_invalid_sum_1 = 0
     total_invalid_sum_2 = 0
-    ids = input_string_reader(input_string)
+    ids = input_string_reader(test_string)
     while True:
         try:
             start, end = next(ids)

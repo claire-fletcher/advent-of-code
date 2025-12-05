@@ -23,9 +23,10 @@ def read_food(file_name):
     """
     return [int(row) for row in open(file_name, "r")]
 
-def find_food_in_ranges(food, start, end):
+def find_spoiled_food(food, start, end):
     """
-    Docstring for find_food_in_ranges
+    Finds any food value that is not in the range start to end (inclusive) and overwrites the food array
+    to only contain those spoiled values.
     
     :param food: array of food values
     :param start: start of the range, inclusive
@@ -70,7 +71,7 @@ def main():
     while True:
         try:
             start, end = next(ranges)
-            find_food_in_ranges(food, start, end)
+            find_spoiled_food(food, start, end)
         except StopIteration:
             break
     

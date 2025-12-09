@@ -1,6 +1,6 @@
 coords = [
     tuple(int(i) for i in l.strip().split(","))
-    for l in open("input.txt", "r").readlines()
+    for l in open("input.txt", "r")
 ]
 
 areas = [

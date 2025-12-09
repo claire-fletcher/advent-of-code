@@ -1,0 +1,1 @@
+c=[tuple(int(i)for i in l.strip().split(","))for l in open("input.txt")];print(f"Part 1, Max Area: {max((abs(c[j][1]-c[i][1])+1)*(abs(c[j][0]-c[i][0])+1)for i in range(len(c))for j in range(i+1,len(c)))}")

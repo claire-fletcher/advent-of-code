@@ -43,3 +43,11 @@ def read_file_backwards_yield(file_name):
     reversed_file = reversed(list(open(file_name)))
     for row in reversed_file: # might need readlines
         yield row
+
+def iterate_yield_example():
+    while True:
+        try:
+            # use next on generator
+            # do thing
+        except StopIteration:
+            break

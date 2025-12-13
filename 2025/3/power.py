@@ -7,10 +7,6 @@ def row_stream_reader(file_name):
         yield row.strip()
 
 
-# Per row, find the pair that forms the largest number when concatenated
-# rows are all the batteries you need and you turn on two
-# total output joltage is all of those pairs added together
-
 def calculate_largest_pair(row):
 
     # keep the largest value to the left, it cannot be the final number
@@ -21,9 +17,8 @@ def calculate_largest_pair(row):
     stored_left = 0
     stored_right = 0
     for i in range(0, len(row)-1):
-        j = i+1
         left = int(row[i])
-        right = int(row[j])
+        right = int(row[i+1])
 
         if left > stored_left:
             stored_left = left
@@ -35,46 +30,52 @@ def calculate_largest_pair(row):
     pair = str(stored_left) + str(stored_right)
     return int(pair)
 
-# part two is any combination (in order) for 12 that gets the largest value
-# This is essentially a choose 12 but in order issue? so we can do all the combos where we choose 12 in order
-# from the sequence and then find the largest number and return?
-# this might get large
-# using my previous logic we could also:
-# find the largest value number in the string which has 11 values after it,
-# then the 11 largest values after that. the order of those won't matter
-# as we cannot re-order them so whatever the largest values of 12 will be the biggest value we can have
-# as they will represent each 10 places.
-# shortest way to iterate that would be a sliding window?
-
-###### Plans:
-# if left > stored_left && len of [i:] >= 11 then change value of left and clear the right
-# if = 11 then stop and output immediately
-# else continue looking for the right side 12 largest. 
 
 def calculate_largest_twelve(row):
-    # TODO:find the next 12, start by getting the largest value with at least 11 values after it
+
     stored_left = 0
+    stored_right = row
 
     for i in range(0, len(row)):
-        # TODO: make a substring of the row to check for the 12 each time,
-        # do this up to 12 less for the left value?
-        j = i+1
+        
         left = int(row[i])
+        right = row[i+1:]
 
         # Case where the largest 12 are the last ones.
-        if left > stored_left and len(row[i:]) == 12:
-            return int(row[i:])
+        if left > stored_left and len(right) == 11:
+            return int(row[i]+right)
         
-        elif left > stored_left and len(row[i:]) > 12:
+        # Don't continue checking once len(right) is 11
+        elif len(right) == 11:
+            print(int(str(stored_left)+stored_right))
+            return int(str(stored_left)+stored_right)
+        
+        elif left > stored_left and len(right) > 11:
             stored_left = left
-            # TODO: clear all the right
+            # TODO: we could also not recompute if index of left is still less than start of right.
+            stored_right = find_largest_right_values(right)
 
-        ## TODO: handling the right
+    return int(str(stored_left)+stored_right)
 
-    return stored_left
+def find_largest_right_values(substring):
+    # Find the largest 11 values in the substring while keeping the order
+
+    result = []  # This will store the largest 11 values
+
+    for i, char in enumerate(substring):
+        # While we can still add characters and the current character is larger
+        # than the last in the result (and we can still remove from the result)
+        while result and len(result) + len(substring) - i > 11 and char > result[-1]:
+            result.pop()  # Remove the smaller value to make room for a larger one
+        
+        # Add the current character if we still need more values
+        if len(result) < 11:
+            result.append(char)
+
+    return ''.join(result)
 
 def main():
-    rows = row_stream_reader("test.txt")
+    rows = row_stream_reader("input.txt")
     total_joltage = 0
     total_twelve_joltage = 0
     while True:
